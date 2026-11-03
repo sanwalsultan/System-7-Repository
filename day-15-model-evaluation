@@ -1,0 +1,76 @@
+Learning objectives
+By the end of Day 1, you should be able to:
+- Split a dataset into training and testing sets.
+- Explain why we use random_state and stratify.
+- Train a classification model and calculate evaluation metrics.
+- Read and plot a confusion matrix.
+- Calculate regression metrics: MAE, MSE, RMSE, and R².
+- Use 5-fold cross-validation to compare models.
+- Plot ROC curves and calculate AUC.
+1. Important concepts
+Training data and testing data
+A machine learning dataset is commonly divided into two parts:
+- Training set: The data used by the model to learn patterns.
+- Testing set: Separate data used to evaluate how well the trained model performs on unseen examples.
+An 80/20 split means 80% of the data is used for training and 20% for testing.
+random_state
+random_state fixes the random split so that you can reproduce the same result when you run the code again.
+stratify
+stratify=y keeps approximately the same class proportions in the training and testing sets. It is useful for classification datasets, especially when classes are imbalanced.
+Classification metrics
+- Accuracy: The proportion of all predictions that are correct.
+- Precision: Of the examples predicted as positive, how many were actually positive?
+- Recall: Of all actual positive examples, how many did the model correctly identify?
+- F1-score: The harmonic mean of precision and recall. It balances the two.
+- Confusion matrix: A table showing correct and incorrect predictions by class.
+- ROC curve: Shows the trade-off between true positive rate and false positive rate at different classification thresholds.
+- AUC: The area under the ROC curve. A higher AUC generally indicates better ability to distinguish between classes.
+Regression metrics
+- MAE (Mean Absolute Error): Average absolute difference between actual and predicted values.
+- MSE (Mean Squared Error): Average squared difference between actual and predicted values.
+- RMSE (Root Mean Squared Error): Square root of MSE, expressed in the target variable's units.
+- R² (R-squared): Indicates how well the model explains variation in the target. It can be negative when the model performs worse than a simple mean-based baseline.
+Cross-validation
+In 5-fold cross-validation, the dataset is divided into five parts. The model trains on four parts and validates on the remaining part. This process repeats five times, with each part used for validation once.
+
+Report the mean and standard deviation of the five scores. The mean summarizes performance; the standard deviation shows how much the score varies across folds.
+2. Setup
+Recommended environment:
+python -m venv .venv
+Activate it on Windows PowerShell:
+.venv\Scripts\Activate.ps1
+Install dependencies:
+pip install -r requirements.txt
+Run an individual task from this folder:
+python 01_train_test_split.py
+3. Practice questions and solutions
+Question 1: Train-test split
+Task: Split a dataset 80/20 with a fixed random_state and stratify. Print the shape and class balance of both parts.
+
+File: 01_train_test_split.py
+
+The solution uses scikit-learn's breast cancer dataset. It prints the number of rows and class proportions before and after splitting.
+Question 2: Classification metrics and confusion matrix
+Task: Train a classifier, calculate accuracy, precision, recall, and F1-score, and plot its confusion matrix.
+
+File: 02_classification_metrics.py
+
+The solution trains a Logistic Regression classifier and reports the requested metrics. It also displays a confusion matrix.
+Question 3: Regression metrics
+Task: Calculate MAE, MSE, RMSE, and R² for a house-price-style regression example using NumPy, then verify the results with scikit-learn.
+
+File: 03_regression_metrics.py
+
+The example uses sample actual and predicted values so that the metric calculations are easy to inspect. The values are illustrative, not real house-price data.
+Question 4: Five-fold cross-validation
+Task: Run 5-fold cross-validation on three models. Print the mean and standard deviation of each score.
+
+File: 04_cross_validation.py
+
+The solution compares Logistic Regression, Decision Tree, and Random Forest classifiers using the same dataset and 5-fold stratified cross-validation.
+Question 5: ROC curves and AUC
+Task: Plot ROC curves and AUC for Logistic Regression and Random Forest on one chart.
+
+File: 05_roc_auc.py
+
+The solution trains both models, obtains positive-class probabilities, calculates ROC points and AUC, and plots both curves together.
