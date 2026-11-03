@@ -1,10 +1,4 @@
-# System 7 — Day 17: SVM, Naive Bayes & Clustering
 
-**Week:** 3 — Model Evaluation, Advanced ML & Deep Learning  
-**Module:** B — Advanced Machine Learning  
-**Mentor:** Saad Hassan Saadi  
-**GitHub folder:** `day-17-svm-clustering`  
-**Suggested commit message:** `day-17-svm-clustering`
 
 ## 1. Day 17 Overview
 
@@ -181,66 +175,6 @@ All outputs are written to the `results/` folder. If using a notebook or Google 
 
 The three scripts were executed with **scikit-learn 1.8.0**. These are measured example results, not guarantees. Run the scripts yourself before committing and add your observations.
 
-| Experiment | Measured result | What it means |
-|---|---|---|
-| Q9: K-Means, `k=2` | Inertia **222.3617**, silhouette **0.5818** | Highest silhouette score among `k=2...10` |
-| Q9: K-Means, `k=3` | Inertia **139.8205**, silhouette **0.4599** | Lower inertia but also lower silhouette; smaller inertia alone is not enough to pick `k` |
-| Q10: Naive Bayes, 5-fold training CV | Macro recall **0.9762** | Strong performance on this dataset and split |
-| Q10: SVM, 5-fold training CV | Macro recall **0.9878** | SVM is selected by the predefined CV macro-recall rule |
-| Q10: Naive Bayes, held-out test | Accuracy **0.9722**, macro precision **0.9744**, macro recall **0.9762** | Better test macro recall of the two in this run |
-| Q10: SVM, held-out test | Accuracy **0.9722**, macro precision **0.9778**, macro recall **0.9667** | Better test macro precision, but lower test macro recall |
-| Clustering: K-Means / hierarchical | **2 clusters** each | Both were configured to return two groups |
-| Clustering: DBSCAN | **2 clusters**, **8 noise points** | Found two density-connected groups and marked some observations as noise |
-
-**My interpretation of Q9:** `k=2` wins on the mean silhouette metric for the standardized Iris features, even though the dataset contains three known Iris species. This does **not** mean that Iris has only two real species. The elbow curve can be interpreted differently, illustrating why cluster selection depends on the objective.
-
-**My interpretation of Q10:** The SVM had the higher cross-validation macro recall and would be selected by that rule. Both models had the same test accuracy, but Naive Bayes had higher **test recall** and SVM higher **test precision**. A model chosen on one split is not guaranteed to win every metric on new data.
-
-**My interpretation of clustering:** K-Means and Ward hierarchical clustering create compact partitioning structures. On the curved two-moons illustration, DBSCAN can better follow density-connected shapes and separately label noise. A different `eps` or dataset may reverse that outcome.
-
-### Reflection questions
-
-1. How does SVM's `C` differ from RBF `gamma`?
-2. What does the conditional-independence assumption mean in Naive Bayes?
-3. Why does inertia always decrease or stay constant as `k` increases?
-4. Why can the silhouette-optimal `k` differ from the number of known classes?
-5. When is a dendrogram useful, and how does DBSCAN identify noise?
-6. Why might an SVM win on cross-validation recall but lose on test recall?
-
-## 7. Folder Structure
-
-```text
-day-17-svm-clustering/
-├── README.md
-├── requirements.txt
-├── q09_kmeans_elbow_silhouette.py
-├── q10_naive_bayes_vs_svm.py
-├── hierarchical_dbscan_demo.py
-└── results/
-    ├── q09_kmeans_metrics.csv
-    ├── q09_elbow_silhouette.png
-    ├── q09_kmeans_elbow_silhouette_run.txt
-    ├── q10_naive_bayes_vs_svm_metrics.csv
-    ├── q10_confusion_matrices.png
-    ├── q10_naive_bayes_vs_svm_run.txt
-    ├── clustering_methods_comparison.png
-    ├── hierarchical_dendrogram.png
-    └── hierarchical_dbscan_demo_run.txt
-```
-
-## 8. Daily GitHub Commit
-
-Place `day-17-svm-clustering/` inside the **existing System 7 repository** (do not start a new repository). After checking the scripts and adding your reflections:
-
-```bash
-git add day-17-svm-clustering/
-git commit -m "day-17-svm-clustering"
-git push
-```
-
-Make **one day-wise commit** for Day 17; do not batch multiple days into one commit.
 
 ---
 
-**Source:** *System 7 — Week 3 Syllabus*, Module B, Daily Plan (Day 3 / Day 17), Learning Topic "Choosing k in K-Means", Code Practice Questions 9–10, and GitHub Instructions.  
-**Scope note:** The extra demonstrations, examples, calculations, and reflection questions expand the syllabus for practice. The practical datasets and results are explicitly identified above.
