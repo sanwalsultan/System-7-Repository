@@ -1,10 +1,4 @@
-# System 7 — Day 19: Deep Learning & Neural Networks
 
-**Week:** 3 — Model Evaluation, Advanced ML & Deep Learning  
-**Module:** C — Deep Learning & Neural Networks  
-**Mentor:** Saad Hassan Saadi  
-**GitHub folder:** `day-19-neural-networks`  
-**Suggested commit message:** `day-19-neural-networks`
 
 ## 1. Day 19 Overview
 
@@ -239,58 +233,7 @@ The syllabus lists forward propagation and backpropagation as learning topics. T
 ```bash
 python nn_forward_backward_numpy.py
 ```
-
-**Observed result:** The maximum absolute discrepancy between analytic and finite-difference gradients was about `7.7e-12`. After training, the network classified all **four XOR inputs correctly**; binary cross-entropy decreased from approximately `0.69799` to `0.00087`.
-
-**Generated files:** `results/numpy_backprop_loss.csv` and `results/numpy_backprop_predictions.csv`.
-
-This is supplemental code; it does not replace Q14 or Q15.
-
-## 6. Repository Structure
-
-```text
-day-19-neural-networks/
-├── README.md
-├── requirements.txt
-├── requirements-torch.txt
-├── .gitignore
-├── q14_perceptron_and_gate.py
-├── q15_keras_sgd_vs_adam.py
-├── nn_forward_backward_numpy.py
-├── student_data.py
-├── tests/
-│   └── test_day19.py
-└── results/
-    ├── execution_log.txt
-    ├── q14_training_history.csv
-    ├── q14_truth_table.csv
-    ├── numpy_backprop_loss.csv
-    ├── numpy_backprop_predictions.csv
-    ├── synthetic_student_scores.csv
-    ├── q15_validation_comparison.csv
-    ├── q15_test_metrics.csv
-    ├── q15_summary.json
-    ├── q15_sgd_vs_adam_loss.png
-    ├── student_actual_vs_predicted.png
-    └── student_prediction_examples.csv
-```
-
-## 7. How to Run
-
-### Option A — TensorFlow backend (recommended for the syllabus)
-
-```bash
-python -m venv .venv
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-# macOS / Linux: source .venv/bin/activate
-python -m pip install -r requirements.txt
-python q14_perceptron_and_gate.py
-python nn_forward_backward_numpy.py
-python q15_keras_sgd_vs_adam.py
-python -m unittest discover -s tests -v
-```
-
-The Q15 code detects TensorFlow automatically if it is installed and uses Keras with the TensorFlow backend. **TensorFlow was not installed in the tested environment; do not treat its execution as verified here.**
+environment; do not treat its execution as verified here.**
 
 ### Option B — PyTorch backend (tested in the current environment)
 
@@ -311,42 +254,7 @@ $env:KERAS_BACKEND="torch"
 python q15_keras_sgd_vs_adam.py
 ```
 
-```bash
-# macOS / Linux
-KERAS_BACKEND=torch python q15_keras_sgd_vs_adam.py
-```
 
-**Dependency note:** Both TensorFlow and PyTorch can be large installations. Use **one backend** unless you specifically need both. Execution time and scores may differ across software versions, hardware, and backends.
-
-## 8. Questions for Self-Assessment
-
-1. Why does a neuron need weights and a bias?
-2. What changes during training: the inputs or the model parameters?
-3. Why can one perceptron learn AND but not XOR?
-4. What is forward propagation? What does backpropagation calculate?
-5. Why are activation functions necessary in a multilayer network?
-6. When should I use ReLU, sigmoid, softmax, or a linear output?
-7. How do learning rate, batch size, and epochs affect training?
-8. What is the difference between training loss and validation loss?
-9. Why must the scaler be fitted on training samples only?
-10. Why must I compare with a simple baseline and avoid selecting by test score?
-
-## 9. Verification and Limitations
-
-**Executed in the prepared environment:**
-
-- Q14 passed the AND truth-table assertion.
-- The NumPy backpropagation exercise passed finite-difference gradient checks and the XOR truth-table assertion.
-- Q15 completed 65-epoch runs for both SGD and Adam using **Keras 3.13.2 with PyTorch backend**, exported summary metrics, and saved both figures.
-- All three standard-library unit tests passed.
-
-**Limitations:** Data is synthetic; one random split and seed are not robust external validation; optimizer learning rates differ; TensorFlow backend is included as a supported installation path but was **not executed** in the available environment. Do not treat the generated numbers as evidence about real schools or students.
-
-## 10. GitHub Daily Commit
-
-The syllabus requires **one day-wise commit** in the existing System 7 repository; keep daily code, learning notes, data, and charts in the corresponding folder.
-
-```bash
 git add day-19-neural-networks/
 git commit -m "day-19-neural-networks"
 git push
